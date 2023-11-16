@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+void imprimirMatriz(int matriz[3][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d\t", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int esMatrizMagica(int matriz[3][3]) {
+    int sumaReferencia = matriz[0][0] + matriz[0][1] + matriz[0][2];
+
+    for (int i = 1; i < 3; i++) {
+        int sumaFila = matriz[i][0] + matriz[i][1] + matriz[i][2];
+        if (sumaFila != sumaReferencia) {
+            return 0;
+        }
+    }
+
+    for (int j = 0; j < 3; j++) {
+        int sumaColumna = matriz[0][j] + matriz[1][j] + matriz[2][j];
+        if (sumaColumna != sumaReferencia) {
+            return 0;
+        }
+    }
+
+    int sumaDiagonalPrincipal = matriz[0][0] + matriz[1][1] + matriz[2][2];
+    if (sumaDiagonalPrincipal != sumaReferencia) {
+        return 0; 
+    }
+
+    int sumaDiagonalSecundaria = matriz[0][2] + matriz[1][1] + matriz[2][0];
+    if (sumaDiagonalSecundaria != sumaReferencia) {
+        return 0;
+    }
+
+    printf("Suma de la fila 1: %d\n", sumaReferencia);
+    printf("Suma de la fila 2: %d\n", sumaReferencia);
+    printf("Suma de la fila 3: %d\n", sumaReferencia);
+
+    printf("Suma de la columna 1: %d\n", sumaReferencia);
+    printf("Suma de la columna 2: %d\n", sumaReferencia);
+    printf("Suma de la columna 3: %d\n", sumaReferencia);
+
+    printf("Suma de la diagonal: %d\n", sumaDiagonalPrincipal);
+    printf("Suma de la diagonal secundaria: %d\n", sumaDiagonalSecundaria);
+
+    return 1;
+}
+
+int main() {
+    int matriz[3][3];
+
+    printf("Ingrese los elementos:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    printf("Matriz:\n");
+    imprimirMatriz(matriz);
+
+    if (esMatrizMagica(matriz)) {
+        printf("\nLa matriz es magica.\n");
+    } else {
+        printf("\nLa matriz no es magica.\n");
+    }
+
+    return 0;
+}
