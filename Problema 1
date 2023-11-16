@@ -1,0 +1,183 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void imprimir_matriz(int matriz[][7], int filas, int columnas) {
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int suma_diagonal_principal(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        suma += matriz[i][i];
+    }
+    return suma;
+}
+
+int suma_primera_fila(int matriz[][7]) {
+    int suma = 0;
+    for (int j = 0; j < 7; j++) {
+        suma += matriz[0][j];
+    }
+    return suma;
+}
+
+int suma_ultima_columna(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        suma += matriz[i][6];
+    }
+    return suma;
+}
+
+int suma_filas_pares(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i += 2) {
+        for (int j = 0; j < 7; j++) {
+            suma += matriz[i][j];
+        }
+    }
+    return suma;
+}
+
+int suma_columnas_impares(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 1; j < 7; j += 2) {
+            suma += matriz[i][j];
+        }
+    }
+    return suma;
+}
+
+int suma_triangular_superior_diagonal_principal(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        for (int j = i; j < 7; j++) {
+            suma += matriz[i][j];
+        }
+    }
+    return suma;
+}
+
+int suma_triangular_inferior_diagonal_principal(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j <= i; j++) {
+            suma += matriz[i][j];
+        }
+    }
+    return suma;
+}
+
+int suma_fila_2(int matriz[][7]) {
+    int suma = 0;
+    for (int j = 0; j < 7; j++) {
+        suma += matriz[1][j];
+    }
+    return suma;
+}
+
+int suma_fila_4(int matriz[][7]) {
+    int suma = 0;
+    for (int j = 0; j < 7; j++) {
+        suma += matriz[3][j];
+    }
+    return suma;
+}
+
+int suma_fila_6(int matriz[][7]) {
+    int suma = 0;
+    for (int j = 0; j < 7; j++) {
+        suma += matriz[4][j];
+    }
+    return suma;
+}
+
+int suma_columna_1(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        suma += matriz[i][0];
+    }
+    return suma;
+}
+
+int suma_columna_3(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        suma += matriz[i][2];
+    }
+    return suma;
+}
+
+int suma_columna_5(int matriz[][7]) {
+    int suma = 0;
+    for (int i = 0; i < 5; i++) {
+        suma += matriz[i][4];
+    }
+    return suma;
+}
+
+void llenar_matriz_aleatoria(int matriz[][7]) {
+    srand(time(NULL));
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 7; j++) {
+            matriz[i][j] = rand() % 10;
+        }
+    }
+}
+
+int main() {
+    int matriz[5][7];
+
+    llenar_matriz_aleatoria(matriz);
+
+    printf("Matriz:\n");
+    imprimir_matriz(matriz, 5, 7);
+
+    int suma_diagonal = suma_diagonal_principal(matriz);
+    printf("\nSuma de la diagonal: %d\n", suma_diagonal);
+
+    int suma_primera = suma_primera_fila(matriz);
+    printf("Suma de la fila 1: %d\n", suma_primera);
+
+    int suma_ultima = suma_ultima_columna(matriz);
+    printf("Suma de la columna 7: %d\n", suma_ultima);
+
+    int suma_pares = suma_filas_pares(matriz);
+    printf("Suma de las filas pares: %d\n", suma_pares);
+
+    int suma_impares = suma_columnas_impares(matriz);
+    printf("Suma de las columnas impares: %d\n", suma_impares);
+
+    int suma_superior = suma_triangular_superior_diagonal_principal(matriz);
+    printf("Suma del triangular superior y la diagonal principal: %d\n", suma_superior);
+
+    int suma_inferior = suma_triangular_inferior_diagonal_principal(matriz);
+    printf("Suma del triangular inferior y la diagonal principal: %d\n", suma_inferior);
+
+    int suma_fila2 = suma_fila_2(matriz);
+    printf("Suma de la fila 2: %d\n", suma_fila2);
+
+    int suma_fila4 = suma_fila_4(matriz);
+    printf("Suma de la fila 4: %d\n", suma_fila4);
+
+    int suma_fila6 = suma_fila_6(matriz);
+    printf("Suma de la fila 6: %d\n", suma_fila6);
+
+    int suma_columna1 = suma_columna_1(matriz);
+    printf("Suma de la columna 1: %d\n", suma_columna1);
+
+    int suma_columna3 = suma_columna_3(matriz);
+    printf("Suma de la columna 3: %d\n", suma_columna3);
+
+    int suma_columna5 = suma_columna_5(matriz);
+    printf("Suma de la columna 5: %d\n", suma_columna5);
+
+    return 0;
+}
